@@ -6,6 +6,10 @@ export const routes: Routes = [
     loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
   },
   {
+    path: 'auth/component/formreactive',
+    loadComponent: () => import('./auth/component/formreactive/formreactive.component').then(m => m.FormreactiveComponent),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',

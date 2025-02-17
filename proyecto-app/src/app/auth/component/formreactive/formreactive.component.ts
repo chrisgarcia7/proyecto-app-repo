@@ -6,6 +6,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import {
   IonItem,
   IonLabel,
@@ -13,7 +14,7 @@ import {
   IonHeader,
   IonToolbar,
   IonNote,
-  IonTitle,
+  IonRouterLink,
   IonButton,
   IonIcon,
   IonButtons,
@@ -48,6 +49,8 @@ import { callOutline } from 'ionicons/icons';
     IonButton,
     IonIcon,
     IonButtons,
+    IonRouterLink,
+    RouterLink
   ],
 })
 export class FormreactiveComponent {
