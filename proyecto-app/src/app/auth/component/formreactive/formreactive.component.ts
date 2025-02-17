@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators,
   ReactiveFormsModule,
+  AbstractControl,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import {
@@ -76,7 +77,7 @@ export class FormreactiveComponent {
   });
 
   get isNameRequired(): boolean{
-    const control= this.profileForm.get('name');
+    const control: AbstractControl | null = this.profileForm.get('name');
     if (control){
       return control.invalid && control.touched
     }
@@ -84,7 +85,7 @@ export class FormreactiveComponent {
   }
 
   get isLastNameRequired(): boolean{
-    const control= this.profileForm.get('lastname');
+    const control: AbstractControl | null= this.profileForm.get('lastname');
     if (control){
       return control.invalid && control.touched
     }
@@ -92,7 +93,7 @@ export class FormreactiveComponent {
   }
 
   get isEmailRequired(): boolean{
-    const control= this.profileForm.get('email');
+    const control: AbstractControl | null= this.profileForm.get('email');
     if (control){
       return control.hasError('required') && control.touched
     }
@@ -100,7 +101,7 @@ export class FormreactiveComponent {
   }
 
   get isEmailValid(): boolean{
-    const control= this.profileForm.get('email');
+    const control: AbstractControl | null= this.profileForm.get('email');
     if (control){
       return control.hasError('email') && control.touched
     }
@@ -108,7 +109,7 @@ export class FormreactiveComponent {
   }
 
   get isBirthdayRequired(): boolean{
-    const control= this.profileForm.get('birthday');
+    const control: AbstractControl | null= this.profileForm.get('birthday');
     if (control){
       return control.hasError('required') && control.touched
     }
@@ -116,7 +117,7 @@ export class FormreactiveComponent {
   }
 
   get isPasswordRequired(): boolean{
-    const control= this.profileForm.get('password');
+    const control: AbstractControl | null= this.profileForm.get('password');
     if (control){
       return control.hasError('required') && control.touched
     }
@@ -124,7 +125,7 @@ export class FormreactiveComponent {
   }
 
   get isDNIRequired(): boolean{
-    const control= this.profileForm.get('dni');
+    const control: AbstractControl | null= this.profileForm.get('dni');
     if (control){
       return control.hasError('required') && control.touched
     }
@@ -132,7 +133,7 @@ export class FormreactiveComponent {
   }
 
   get isDNIValid(): boolean{
-    const control= this.profileForm.get('dni');
+    const control: AbstractControl | null= this.profileForm.get('dni');
     if (control){
       return control.hasError('pattern') && control.touched
     }
@@ -140,7 +141,7 @@ export class FormreactiveComponent {
   }
 
   get isPhoneRequired(): boolean{
-    const control= this.profileForm.get('phone');
+    const control: AbstractControl | null= this.profileForm.get('phone');
     if (control){
       return control.hasError('required') && control.touched
     }
@@ -148,7 +149,7 @@ export class FormreactiveComponent {
   }
 
   get isPhoneValid(): boolean{
-    const control= this.profileForm.get('phone');
+    const control: AbstractControl | null= this.profileForm.get('phone');
     if (control){
       return control.hasError('pattern') && control.touched
     }
