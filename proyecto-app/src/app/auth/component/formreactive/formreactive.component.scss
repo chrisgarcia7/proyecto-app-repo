@@ -1,0 +1,23 @@
+.custom-header {
+    --background: #fb0021;
+  }
+
+
+.custom-icon {
+    color: #be1a35;
+}
+
+.custom-input{
+    border: 2px solid #6e6e6e; /* Borde rojo */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px;
+}
+
+.form__errorMessage{
+    color: red;
+    font-size: 110%;
+}
+
+.sinllenar{
+    border: 2px solid red
+}

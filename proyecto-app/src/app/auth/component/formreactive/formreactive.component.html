@@ -1,0 +1,143 @@
+<ion-header >
+  <ion-toolbar class="custom-header">
+    <ion-buttons slot="start">
+      <ion-button fill="clear" style="color: white;">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" >
+  <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+    <ion-item>
+      <ion-label>
+        <ion-icon name="person-outline" class="custom-icon"></ion-icon> Nombres</ion-label>
+        <p class="custom-icon">*</p>
+        
+      </ion-item>
+      <ion-item>
+        <ion-input type="text" class="custom-input" [ngClass]="{'sinllenar': isNameRequired}" formControlName="name"></ion-input>
+        @if (isNameRequired) {
+          <ion-note class="form__errorMessage">El campo es requerido</ion-note>
+        }
+        
+
+      </ion-item>
+      
+  
+      <ion-item>
+        <ion-label><ion-icon name="person-outline" class="custom-icon"></ion-icon> Apellidos</ion-label>
+        <p class="custom-icon">*</p>
+      </ion-item>
+  
+      <ion-item>
+        <ion-input type="text" class="custom-input" [ngClass]="{'sinllenar': isLastNameRequired}" formControlName="lastname"></ion-input>
+
+        @if (isLastNameRequired) {
+          <ion-note class="form__errorMessage">El campo es requerido</ion-note>
+        }
+
+      </ion-item>
+      
+  
+      <ion-item>
+        <ion-label><ion-icon name="at-outline" class="custom-icon"></ion-icon> Correo Electrónico </ion-label>
+        <p class="custom-icon">*</p>
+      </ion-item>
+  
+      <ion-item>
+        <ion-input type="email" class="custom-input" formControlName="email" [ngClass]="{'sinllenar': isEmailRequired || isEmailValid}"></ion-input>
+        @if (isEmailRequired) {
+          <ion-note class="form__errorMessage">El campo es requerido</ion-note>
+        }
+        @if (isEmailValid) {
+          <ion-note class="form__errorMessage">El correo es invalido</ion-note>
+        }
+
+      </ion-item>
+      
+  
+  
+      <ion-item>
+        <ion-label><ion-icon name="lock-closed-outline" class="custom-icon"></ion-icon> Contraseña</ion-label>
+        <p class="custom-icon">*</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="password" class="custom-input" [ngClass]="{'sinllenar': isPasswordRequired}" formControlName="password">
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+        </ion-input>
+        @if (isPasswordRequired) {
+          <ion-note class="form__errorMessage">El campo es requerido</ion-note>
+        }
+
+
+      </ion-item>
+      
+  
+  
+      <ion-item>
+        <ion-label><ion-icon name="calendar-outline" class="custom-icon"></ion-icon> Fecha de Nacimiento</ion-label>
+        <p class="custom-icon">*</p>
+      </ion-item>
+
+      
+      <ion-item>
+        <ion-input type="date" class="custom-input" [ngClass]="{'sinllenar': isBirthdayRequired}" formControlName="birthday"></ion-input>
+        @if (isBirthdayRequired) {
+          <ion-note class="form__errorMessage">El campo es requerido</ion-note>
+        }
+
+
+
+      </ion-item>
+      
+
+      <ion-item>
+        <ion-label><ion-icon name="card-outline" class="custom-icon"></ion-icon> Número de Identidad</ion-label>
+        <p class="custom-icon">*</p>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-input type="number" class="custom-input" [ngClass]="{'sinllenar': isDNIRequired || isDNIValid}" formControlName="dni"></ion-input>
+        @if (isDNIRequired) {
+          <ion-note class="form__errorMessage">El campo es requerido</ion-note>
+        }
+        @if (isDNIValid) {
+          <ion-note class="form__errorMessage">El numero de identidad es invalido</ion-note>
+        }
+
+
+      </ion-item>
+      
+
+
+      <ion-item>
+        <ion-label><ion-icon name="call-outline" class="custom-icon"></ion-icon> Número de Telefono</ion-label>
+        <p class="custom-icon">*</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="number" class="custom-input" [ngClass]="{'sinllenar': isPhoneRequired || isPhoneValid}" formControlName="phone"></ion-input>
+        @if (isPhoneRequired) {
+          <ion-note class="form__errorMessage">El campo es requerido</ion-note>
+        }
+        @if (isPhoneValid) {
+          <ion-note class="form__errorMessage">El telefono es invalido</ion-note>
+        }
+
+      </ion-item>
+      
+
+
+        <ion-button [disabled]="isFormInvalid" expand="full" color="success">Registrar</ion-button>
+
+
+  
+      
+  
+  </form>
+
+</ion-content>
