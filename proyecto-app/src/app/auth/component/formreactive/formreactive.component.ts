@@ -22,14 +22,7 @@ import {
   IonContent,
   IonInputPasswordToggle,
 } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons';
-import { arrowBackOutline } from 'ionicons/icons';
-import { personOutline } from 'ionicons/icons';
-import { atOutline } from 'ionicons/icons';
-import { lockClosedOutline } from 'ionicons/icons';
-import { calendarOutline } from 'ionicons/icons';
-import { cardOutline } from 'ionicons/icons';
-import { callOutline } from 'ionicons/icons';
+import { IconService } from 'src/app/shared/services/icons/icon.service';
 
 @Component({
   selector: 'app-formreactive',
@@ -55,16 +48,8 @@ import { callOutline } from 'ionicons/icons';
   ],
 })
 export class FormreactiveComponent {
-  constructor() {
-    addIcons({ arrowBackOutline });
-    addIcons({ personOutline });
-    addIcons({ atOutline });
-    addIcons({ lockClosedOutline });
-    addIcons({ calendarOutline });
-    addIcons({ cardOutline });
-    addIcons({ callOutline });
-  }
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
+  private readonly _iconService: IconService= inject(IconService)
 
   profileForm: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
