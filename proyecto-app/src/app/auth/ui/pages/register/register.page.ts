@@ -30,6 +30,7 @@ import { lockClosedOutline } from 'ionicons/icons';
 import { calendarOutline } from 'ionicons/icons';
 import { cardOutline } from 'ionicons/icons';
 import { callOutline } from 'ionicons/icons';
+import { IconService } from 'src/app/shared/services/icons/icon.service';
 
 @Component({
   selector: 'app-register',
@@ -54,16 +55,8 @@ import { callOutline } from 'ionicons/icons';
 })
 export class RegisterPage {
 
-  constructor() {
-    addIcons({ arrowBackOutline });
-    addIcons({ personOutline });
-    addIcons({ atOutline });
-    addIcons({ lockClosedOutline });
-    addIcons({ calendarOutline });
-    addIcons({ cardOutline });
-    addIcons({ callOutline });
-  }
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
+  private readonly _iconservice: IconService= inject(IconService);
 
   profileForm: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
