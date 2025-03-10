@@ -17,6 +17,10 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () => import('./auth/ui/pages/login/login.page').then( m => m.LoginPage)
+  },  {
+    path: 'reset',
+    loadComponent: () => import('./auth/ui/pages/reset/reset.page').then( m => m.ResetPage)
   },
+
 
 ];
