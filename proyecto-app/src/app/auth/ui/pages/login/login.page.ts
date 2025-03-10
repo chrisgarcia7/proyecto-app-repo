@@ -21,8 +21,8 @@ import {
   IonNote,
   IonInput,
   IonInputPasswordToggle,
-  IonRouterLink
-} from '@ionic/angular/standalone';
+  IonRouterLink,
+  IonItemDivider, IonList } from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
 import { IconService } from 'src/app/shared/services/icons/icon.service';
 
@@ -31,7 +31,7 @@ import { IconService } from 'src/app/shared/services/icons/icon.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonList, 
     ReactiveFormsModule,
     IonContent,
     IonHeader,
@@ -48,20 +48,20 @@ import { IconService } from 'src/app/shared/services/icons/icon.service';
     IonInput,
     IonInputPasswordToggle,
     IonRouterLink,
-    RouterLink
+    RouterLink,
   ],
 })
 export class LoginPage {
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
   private readonly _iconservice: IconService= inject(IconService);
 
-  profileForm: FormGroup = this.formBuilder.group({
+  loginForm: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
   });
 
   get isEmailRequired(): boolean {
-    const control: AbstractControl | null = this.profileForm.get('email');
+    const control: AbstractControl | null = this.loginForm.get('email');
     if (control) {
       return control.hasError('required') && control.touched;
     }
@@ -69,7 +69,7 @@ export class LoginPage {
   }
 
   get isEmailValid(): boolean {
-    const control: AbstractControl | null = this.profileForm.get('email');
+    const control: AbstractControl | null = this.loginForm.get('email');
     if (control) {
       return control.hasError('email') && control.touched;
     }
@@ -77,7 +77,7 @@ export class LoginPage {
   }
 
   get isPasswordRequired(): boolean {
-    const control: AbstractControl | null = this.profileForm.get('password');
+    const control: AbstractControl | null = this.loginForm.get('password');
     if (control) {
       return control.hasError('required') && control.touched;
     }
@@ -85,9 +85,9 @@ export class LoginPage {
   }
 
   get isFormInvalid(): boolean{
-    return this.profileForm.invalid;
+    return this.loginForm.invalid;
   }
 
 
-  saveProfile(): void {}
+  login(): void {}
 }

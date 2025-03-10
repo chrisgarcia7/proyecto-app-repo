@@ -58,7 +58,7 @@ export class RegisterPage {
   private readonly formBuilder: FormBuilder = inject(FormBuilder);
   private readonly _iconservice: IconService= inject(IconService);
 
-  profileForm: FormGroup = this.formBuilder.group({
+  registerForm: FormGroup = this.formBuilder.group({
     name: ['', [Validators.required]],
     lastname: ['', [Validators.required]],
     email: ['', [Validators.required,Validators.email]],
@@ -69,7 +69,7 @@ export class RegisterPage {
   });
 
   get isNameRequired(): boolean{
-    const control: AbstractControl | null = this.profileForm.get('name');
+    const control: AbstractControl | null = this.registerForm.get('name');
     if (control){
       return control.invalid && control.touched
     }
@@ -77,7 +77,7 @@ export class RegisterPage {
   }
 
   get isLastNameRequired(): boolean{
-    const control: AbstractControl | null= this.profileForm.get('lastname');
+    const control: AbstractControl | null= this.registerForm.get('lastname');
     if (control){
       return control.invalid && control.touched
     }
@@ -85,7 +85,7 @@ export class RegisterPage {
   }
 
   get isEmailRequired(): boolean{
-    const control: AbstractControl | null= this.profileForm.get('email');
+    const control: AbstractControl | null= this.registerForm.get('email');
     if (control){
       return control.hasError('required') && control.touched
     }
@@ -93,7 +93,7 @@ export class RegisterPage {
   }
 
   get isEmailValid(): boolean{
-    const control: AbstractControl | null= this.profileForm.get('email');
+    const control: AbstractControl | null= this.registerForm.get('email');
     if (control){
       return control.hasError('email') && control.touched
     }
@@ -101,7 +101,7 @@ export class RegisterPage {
   }
 
   get isBirthdayRequired(): boolean{
-    const control: AbstractControl | null= this.profileForm.get('birthday');
+    const control: AbstractControl | null= this.registerForm.get('birthday');
     if (control){
       return control.hasError('required') && control.touched
     }
@@ -109,7 +109,7 @@ export class RegisterPage {
   }
 
   get isPasswordRequired(): boolean{
-    const control: AbstractControl | null= this.profileForm.get('password');
+    const control: AbstractControl | null= this.registerForm.get('password');
     if (control){
       return control.hasError('required') && control.touched
     }
@@ -117,7 +117,7 @@ export class RegisterPage {
   }
 
   get isDNIRequired(): boolean{
-    const control: AbstractControl | null= this.profileForm.get('dni');
+    const control: AbstractControl | null= this.registerForm.get('dni');
     if (control){
       return control.hasError('required') && control.touched
     }
@@ -125,7 +125,7 @@ export class RegisterPage {
   }
 
   get isDNIValid(): boolean{
-    const control: AbstractControl | null= this.profileForm.get('dni');
+    const control: AbstractControl | null= this.registerForm.get('dni');
     if (control){
       return control.hasError('pattern') && control.touched
     }
@@ -133,7 +133,7 @@ export class RegisterPage {
   }
 
   get isPhoneRequired(): boolean{
-    const control: AbstractControl | null= this.profileForm.get('phone');
+    const control: AbstractControl | null= this.registerForm.get('phone');
     if (control){
       return control.hasError('required') && control.touched
     }
@@ -141,7 +141,7 @@ export class RegisterPage {
   }
 
   get isPhoneValid(): boolean{
-    const control: AbstractControl | null= this.profileForm.get('phone');
+    const control: AbstractControl | null= this.registerForm.get('phone');
     if (control){
       return control.hasError('pattern') && control.touched
     }
@@ -149,11 +149,11 @@ export class RegisterPage {
   }
 
   get isFormInvalid(): boolean{
-    return this.profileForm.invalid;
+    return this.registerForm.invalid;
   }
 
 
-  saveProfile(): void {}
+  register(): void {}
 
 
 

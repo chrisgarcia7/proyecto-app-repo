@@ -9,7 +9,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" >
-  <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
     <ion-item>
       <ion-label class="nombrepagina">Inicio de Sesión</ion-label>
     </ion-item>
@@ -49,8 +49,32 @@
       @if (isPasswordRequired) {
         <ion-note class="form__errorMessage">El campo es requerido</ion-note>
       }
+
+      <ion-item>
+        <ion-button fill="clear" slot="end">¿Olvidaste tu contraseña?</ion-button>
+      </ion-item>
       
-        <ion-button [disabled]="isFormInvalid" expand="full" color="success">Iniciar Sesión</ion-button>
+        <ion-button [disabled]="isFormInvalid" expand="full" class="custom-button" shape="round">Iniciar Sesión</ion-button>
+      
+      <ion-item>
+        <div style="display: flex; align-items: center; width: 100%;">
+          <hr style="flex: 1; border: none; border-top: 1px solid black;"/>
+          <span style="margin: 0 10px;">o</span>
+          <hr style="flex: 1; border: none; border-top: 1px solid black;"/>
+        </div>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-button shape="round" style="display: flex; justify-content: center; align-items: center; margin: auto;" color="light" fill="outline"><img src="https://img.icons8.com/?size=512&id=17949&format=png" style="width: 5%;">Iniciar sesión con Google</ion-button>
+      </ion-item>
+
+      <ion-item > 
+        <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+          <p style="margin: 0; padding-right: 10px;">¿No tienes cuenta?</p>
+          <ion-button fill="clear" style="color: #698f5f;" routerLink="/register" routerDirection="root">Regístrate ahora</ion-button>
+        </div>
+      </ion-item>
 
 
   

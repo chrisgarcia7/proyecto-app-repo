@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  firebaseconfig: {
+  firebaseConfig: {
     projectId: 'proyectodm2-e4e95',
     appId: '1:541142127125:web:e6c7bcdfa80f75acc1741c',
     storageBucket: 'proyectodm2-e4e95.firebasestorage.app',
