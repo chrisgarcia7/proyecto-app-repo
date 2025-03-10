@@ -54,7 +54,7 @@
         <ion-button fill="clear" slot="end">¿Olvidaste tu contraseña?</ion-button>
       </ion-item>
       
-        <ion-button [disabled]="isFormInvalid" expand="full" class="custom-button" shape="round">Iniciar Sesión</ion-button>
+        <ion-button [disabled]="isFormInvalid" expand="full" class="custom-button" shape="round" (click)="login()">Iniciar Sesión</ion-button>
       
       <ion-item>
         <div style="display: flex; align-items: center; width: 100%;">
