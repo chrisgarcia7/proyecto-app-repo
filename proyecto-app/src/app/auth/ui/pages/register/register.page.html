@@ -141,8 +141,27 @@
       }
 
 
-        <ion-button [disabled]="isFormInvalid" expand="full" color="success">Registrar</ion-button>
+      <ion-button [disabled]="isFormInvalid" expand="full" class="custom-button" shape="round">Regístrarse</ion-button>
+      
+      <ion-item>
+        <div style="display: flex; align-items: center; width: 100%;">
+          <hr style="flex: 1; border: none; border-top: 1px solid black;"/>
+          <span style="margin: 0 10px;">o</span>
+          <hr style="flex: 1; border: none; border-top: 1px solid black;"/>
+        </div>
+      </ion-item>
 
+
+      <ion-item>
+        <ion-button shape="round" style="display: flex; justify-content: center; align-items: center; margin: auto;" color="light" fill="outline"><img src="https://img.icons8.com/?size=512&id=17949&format=png" style="width: 5%;">Registrarse con Google</ion-button>
+      </ion-item>
+
+      <ion-item > 
+        <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+          <p style="margin: 0; padding-right: 10px;">¿Ya tienes cuenta?</p>
+          <ion-button fill="clear" style="color: #698f5f;" routerLink="/login" routerDirection="root">Iniciar sesión</ion-button>
+        </div>
+      </ion-item>
 
   
       
