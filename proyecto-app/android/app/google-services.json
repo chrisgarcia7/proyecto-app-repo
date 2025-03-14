@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "541142127125",
+    "project_id": "proyectodm2-e4e95",
+    "storage_bucket": "proyectodm2-e4e95.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541142127125:android:3247722d565ce665c1741c",
+        "android_client_info": {
+          "package_name": "com.dmovil2.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKodGgesvTKrS8DKm0hQ8Sy_G9t8Yf0jM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
