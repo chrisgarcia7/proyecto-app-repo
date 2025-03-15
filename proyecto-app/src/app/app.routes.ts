@@ -24,7 +24,11 @@ export const routes: Routes = [
   {
     path: 'reset',
     loadComponent: () => import('./auth/ui/pages/reset/reset.page').then( m => m.ResetPage)
+  },  {
+    path: 'tabs',
+    loadComponent: () => import('./shared/pages/tabs/tabs.page').then( m => m.TabsPage)
   },
+
 
 
 ];
