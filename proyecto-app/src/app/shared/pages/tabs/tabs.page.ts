@@ -9,7 +9,7 @@ import { IconService } from '../../services/icons/icon.service';
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonIcon, IonTabs, IonTabBar, IonTabButton, IonLabel]
+  imports: [ IonIcon, IonTabs, IonTabBar, IonTabButton, IonLabel]
 })
 export class TabsPage implements OnInit {
   private readonly _iconservice: IconService= inject(IconService);

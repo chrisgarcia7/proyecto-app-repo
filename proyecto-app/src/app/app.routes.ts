@@ -4,13 +4,8 @@ import { inject } from '@angular/core';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-    canActivate: [() => inject(AuthGuard).canActivate()]
-  },
-  {
     path: '',
-    redirectTo: 'login',
+    redirectTo: '/tabs/home',
     pathMatch: 'full',
   },
   {
@@ -24,9 +19,12 @@ export const routes: Routes = [
   {
     path: 'reset',
     loadComponent: () => import('./auth/ui/pages/reset/reset.page').then( m => m.ResetPage)
-  },  {
-    path: 'tabs',
-    loadComponent: () => import('./shared/pages/tabs/tabs.page').then( m => m.TabsPage)
+  },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./shared/pages/tabs/tabs.routes').then((m) => m.routes),
+    canActivate: [() => inject(AuthGuard).canActivate()],
   },
 
 

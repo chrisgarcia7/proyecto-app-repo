@@ -1,0 +1,12 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Galería</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="image-gallery">
+    <img *ngFor="let image of userImages" [src]="image" alt="User Image" />
+  </div>
+  
+</ion-content>
