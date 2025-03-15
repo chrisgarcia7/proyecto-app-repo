@@ -24,7 +24,7 @@ export class AuthService {
   private readonly _firestore: Firestore = inject(Firestore);
   private readonly _collection: CollectionReference = collection(this._firestore, collectionName);
 
-  private async getCurrentUser(): Promise<boolean>{
+  async isUserLoggued(): Promise<boolean>{
     return new Promise<boolean>((resolve)=>{
       this._auth.onAuthStateChanged((user: User | null) =>{
         console.log ('user ->', user);
@@ -33,6 +33,16 @@ export class AuthService {
         } else{
           resolve(false);
         }
+      });
+    });
+  }
+
+  private async getCurrentUser(): Promise<User | null>{
+    return new Promise<User | null>((resolve)=>{
+      this._auth.onAuthStateChanged((user: User | null) =>{
+        console.log ('user ->', user);
+          resolve(user);
+        
       });
     });
   }
@@ -51,8 +61,8 @@ export class AuthService {
   }
 
   async login(model: LoginDto): Promise<UserCredential> {
-    const isLogged: boolean = await this.getCurrentUser();
-    if(isLogged) return Promise.reject('Ya hay un usuario logueado');
+    const isLogged: boolean = await this.isUserLoggued();
+    if(isLogged) return Promise.reject('Ya hay una sesión activa');
 
     return await signInWithEmailAndPassword(
       this._auth, 
@@ -67,8 +77,8 @@ export class AuthService {
 
   async signUp(model: UserDto): Promise<void>{
 
-    const isLogged: boolean = await this.getCurrentUser();
-    if(isLogged) return Promise.reject('Ya hay un usuario logueado');
+    const isLogged: boolean = await this.isUserLoggued();
+    if(isLogged) return Promise.reject('Ya hay una sesión activa');
 
     await createUserWithEmailAndPassword(
       this._auth, 
