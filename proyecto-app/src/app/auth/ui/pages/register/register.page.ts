@@ -170,7 +170,7 @@ export class RegisterPage {
     .signUp(newUser)
     .then(() =>{
       this.showToast('Usuario registrado correctamente');
-      this._router.navigate(['/home'])
+      this._router.navigate(['/tabs/home'])
 
     }).catch(async()=>{
       await this.showToast('Ha ocurrido un error, vuelve a intentarlo', true);

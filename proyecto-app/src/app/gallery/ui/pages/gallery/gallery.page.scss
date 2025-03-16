@@ -1,0 +1,15 @@
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espacio entre imágenes */
+  }
+  
+  .image-gallery img {
+    max-width: 100px; /* Ajusta el tamaño según necesites */
+    border-radius: 8px; /* Bordes redondeados */
+  }
+
+  .custom-fab { 
+    --background: #91b3a2;// Sombra para efecto flotante
+  }
+  

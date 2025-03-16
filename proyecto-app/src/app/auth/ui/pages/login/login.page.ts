@@ -105,7 +105,7 @@ export class LoginPage {
       .login(login)
       .then((user) => {
         this.showToast("Bienvenido(a), haz iniciado sesión", false);
-        this._router.navigate(['/home'])
+        this._router.navigate(['/tabs/home'])
         console.log(user);
     })
     .catch((error)=>{
