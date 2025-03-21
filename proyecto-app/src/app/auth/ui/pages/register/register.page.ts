@@ -78,7 +78,7 @@ export class RegisterPage {
   get isNameRequired(): boolean{
     const control: AbstractControl | null = this.registerForm.get('name');
     if (control){
-      return control.invalid && control.touched
+      return control.hasError('required') && control.touched
     }
     return false
   }
@@ -86,7 +86,7 @@ export class RegisterPage {
   get isLastNameRequired(): boolean{
     const control: AbstractControl | null= this.registerForm.get('lastname');
     if (control){
-      return control.invalid && control.touched
+      return control.hasError('required') && control.touched
     }
     return false
   }

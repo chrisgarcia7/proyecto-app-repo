@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { addIcons } from 'ionicons';
-import { addOutline, arrowBackOutline, folderSharp, homeSharp, personSharp } from 'ionicons/icons';
+import { addOutline, arrowBackOutline, exitOutline, folderSharp, homeSharp, personSharp } from 'ionicons/icons';
 import { personOutline } from 'ionicons/icons';
 import { atOutline } from 'ionicons/icons';
 import { lockClosedOutline } from 'ionicons/icons';
@@ -25,5 +25,6 @@ export class IconService {
         addIcons({folderSharp});
         addIcons({personSharp});
         addIcons({addOutline});
+        addIcons({exitOutline});
   }
 }

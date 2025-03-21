@@ -7,4 +7,5 @@ export interface ProfileDto{
     birthday: Date,
     dni: number,
     phone: number,
+    photoUrl: string,
 }
