@@ -1,5 +1,5 @@
 export interface ProfileDto{
-    uid: string
+    uid: string,
     name: string,
     lastname: string,
     email: string,
@@ -7,4 +7,5 @@ export interface ProfileDto{
     birthday: Date,
     dni: number,
     phone: number,
+    imageProfile: string,
 }

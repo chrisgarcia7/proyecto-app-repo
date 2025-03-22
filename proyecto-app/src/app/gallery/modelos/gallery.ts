@@ -1,4 +1,12 @@
+import { Timestamp } from "@angular/fire/firestore";
+
 export interface GalleryDto {
-    uid: string;
+    active: boolean;
+    createdAt: Timestamp;
+    createBy: string;
+    description: string;
     photo: string;
+    placeName: string;
+    uid: string;
+    
 }

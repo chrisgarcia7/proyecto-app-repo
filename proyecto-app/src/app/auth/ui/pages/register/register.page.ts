@@ -35,6 +35,7 @@ import { IconService } from 'src/app/shared/services/icons/icon.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { UserDto } from 'src/app/auth/modelos/register';
 import { UserCredential } from '@angular/fire/auth';
+import { ProfileDto } from 'src/app/auth/modelos/profile';
 
 @Component({
   selector: 'app-register',
@@ -73,12 +74,13 @@ export class RegisterPage {
     birthday: ['', [Validators.required]],
     dni: ['', [Validators.required,Validators.pattern(/^\d{13}$/)]],
     phone: ['', [Validators.required,Validators.pattern(/^\d{8}$/)]],
+    imageProfile: ['https://cdn-icons-png.flaticon.com/512/1361/1361728.png']
   });
 
   get isNameRequired(): boolean{
     const control: AbstractControl | null = this.registerForm.get('name');
     if (control){
-      return control.invalid && control.touched
+      return control.hasError('required') && control.touched
     }
     return false
   }
@@ -86,7 +88,7 @@ export class RegisterPage {
   get isLastNameRequired(): boolean{
     const control: AbstractControl | null= this.registerForm.get('lastname');
     if (control){
-      return control.invalid && control.touched
+      return control.hasError('required') && control.touched
     }
     return false
   }
@@ -165,7 +167,7 @@ export class RegisterPage {
       this.showToast('Ha ocurrido un error, vuelve a intentarlo', true);
       return;
     }
-    let newUser: UserDto= this.registerForm.value as UserDto;
+    let newUser: ProfileDto= this.registerForm.value as ProfileDto;
     this._authService
     .signUp(newUser)
     .then(() =>{

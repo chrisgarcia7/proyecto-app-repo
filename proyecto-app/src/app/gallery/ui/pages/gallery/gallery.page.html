@@ -5,8 +5,17 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="image-gallery">
-    <img *ngFor="let image of userImages" [src]="image" alt="User Image" />
+
+
+  <div class="grid-container">
+    <div class="grid-item" *ngFor="let image of userImages">
+      <div class="image-container">
+        <img
+          [src]="image" 
+          alt="imagen"
+        />
+      </div>
+    </div>
   </div>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">

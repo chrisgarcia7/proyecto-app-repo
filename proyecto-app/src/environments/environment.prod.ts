@@ -1,5 +1,8 @@
 export const environment = {
   production: true,
+  cloudinary_cloud_name: 'dfsjd37jb',
+  cloudinary_api:'https://api.cloudinary.com/v1_1/dfsjd37jb',
+  cloudinary_upload_preset: 'd-movil2',
   firebaseConfig: {
     projectId: 'proyectodm2-e4e95',
     appId: '1:541142127125:web:e6c7bcdfa80f75acc1741c',

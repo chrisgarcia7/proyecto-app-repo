@@ -1,13 +1,145 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-title>Mi Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <form [formGroup]="profileForm" (ngSubmit)="saveChanges()">
+    <ion-item>
+      <ion-img
+        class="profile-image"
+        [src]="profileImage"
+        alt="Imagen de Perfil"
+        (click)="onPickImage()"
+      ></ion-img>
+    </ion-item>
+
+    <ion-item>
+      <ion-label> Nombre </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        type="text"
+        class="custom-input"
+        [ngClass]="{'sinllenar': isNameRequired}"
+        formControlName="name"
+        [value]="userName"
+      ></ion-input>
+    </ion-item>
+    @if (isNameRequired) {
+    <ion-note class="form__errorMessage">El campo es requerido</ion-note>
+    }
+
+    <ion-item>
+      <div style="display: flex; align-items: center; width: 100%">
+        <hr style="flex: 1; border: none; border-top: 1px solid black" />
+        <hr style="flex: 1; border: none; border-top: 1px solid black" />
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label> Apellido </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-input
+        type="text"
+        class="custom-input"
+        [ngClass]="{'sinllenar': isLastNameRequired}"
+        formControlName="lastname"
+        [value]="userLastName"
+      ></ion-input>
+    </ion-item>
+    @if (isLastNameRequired) {
+    <ion-note class="form__errorMessage">El campo es requerido</ion-note>
+    }
+
+    <ion-item>
+      <div style="display: flex; align-items: center; width: 100%">
+        <hr style="flex: 1; border: none; border-top: 1px solid black" />
+        <hr style="flex: 1; border: none; border-top: 1px solid black" />
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label> Número de Telefono</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        type="number"
+        class="custom-input"
+        [value]="userPhone"
+        [ngClass]="{'sinllenar': isPhoneRequired || isPhoneValid}"
+        formControlName="phone"
+      ></ion-input>
+    </ion-item>
+    @if (isPhoneRequired) {
+    <ion-note class="form__errorMessage">El campo es requerido</ion-note>
+    } @if (isPhoneValid) {
+    <ion-note class="form__errorMessage">El telefono es invalido</ion-note>
+    }
+
+    <ion-item>
+      <div style="display: flex; align-items: center; width: 100%">
+        <hr style="flex: 1; border: none; border-top: 1px solid black" />
+        <hr style="flex: 1; border: none; border-top: 1px solid black" />
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label> Fecha de Nacimiento</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        type="date"
+        class="custom-input"
+        [value]="userBirthday"
+        [ngClass]="{'sinllenar': isBirthdayRequired}"
+        formControlName="birthday"
+      ></ion-input>
+    </ion-item>
+    @if (isBirthdayRequired) {
+    <ion-note class="form__errorMessage">El campo es requerido</ion-note>
+    }
+    @if (isBirthdayValid) {
+      <ion-note class="form__errorMessage">Fecha de Nacimiento invalida</ion-note>
+      }
+
+    <ion-item>
+      <div style="display: flex; align-items: center; width: 100%">
+        <hr style="flex: 1; border: none; border-top: 1px solid black" />
+        <hr style="flex: 1; border: none; border-top: 1px solid black" />
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label> Número de Identidad</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-input
+        type="number"
+        class="custom-input"
+        [value]="userDNI"
+        [ngClass]="{'sinllenar': isDNIRequired || isDNIValid}"
+        formControlName="dni"
+      ></ion-input>
+    </ion-item>
+    @if (isDNIRequired) {
+    <ion-note class="form__errorMessage">El campo es requerido</ion-note>
+    } @if (isDNIValid) {
+    <ion-note class="form__errorMessage"
+      >El numero de identidad es invalido</ion-note
+    >
+    }
+
+    <ion-button [disabled]="isFormInvalid" expand="full" (click)="saveChanges()"
+      >Guardar</ion-button
+    >
+    <ion-button (click)="signOut()" expand="full" fill="outline"
+      ><ion-icon name="exit-outline"></ion-icon>Cerrar Sesión</ion-button
+    >
+  </form>
 </ion-content>
