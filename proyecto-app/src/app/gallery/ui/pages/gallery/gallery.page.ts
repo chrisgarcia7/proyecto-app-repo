@@ -1,9 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonFab, IonFabButton, IonFabList, IonIcon } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonFab, IonFabButton, IonFabList, IonIcon, IonImg } from '@ionic/angular/standalone';
 import { GalleryService } from 'src/app/gallery/services/gallery.service';
-import { ProfileDto } from 'src/app/auth/modelos/profile';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { IconService } from 'src/app/shared/services/icons/icon.service';
 
@@ -12,7 +10,7 @@ import { IconService } from 'src/app/shared/services/icons/icon.service';
   templateUrl: './gallery.page.html',
   styleUrls: ['./gallery.page.scss'],
   standalone: true,
-  imports: [IonIcon, IonFabList, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonFab, IonFabButton]
+  imports: [IonImg, IonIcon, IonFabList, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, IonFab, IonFabButton]
 })
 export class GalleryPage implements OnInit {
   private readonly _authService: AuthService = inject(AuthService)

@@ -34,3 +34,8 @@
     color: #0b654c;
 
 }
+
+.profile-image { /* Cambia el valor según lo que necesites */
+    height: 70%; /* Cambia el valor según lo que necesites */
+    object-fit: cover; /* Para mantener la relación de aspecto */
+  }

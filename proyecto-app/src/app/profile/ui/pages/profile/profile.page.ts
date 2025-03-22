@@ -69,7 +69,6 @@ export class ProfilePage implements OnInit {
   userPhone: number = 0;
   userBirthday: Date = new Date(0);
   userDNI: number = 0;
-  userFullName: string = '';
   userData: ProfileDto | null = null;
 
   ngOnInit(): void {
@@ -86,13 +85,13 @@ export class ProfilePage implements OnInit {
       this.userPhone = userProfile.phone;
       this.userBirthday = userProfile.birthday;
       this.userDNI = userProfile.dni;
-      this.userFullName = this.userName + ' ' + this.userLastName;
       this.profileImage = userProfile.imageProfile;
     }
   }
 
   profileForm: FormGroup = this.formBuilder.group({
-    fullname: ['', [Validators.required]],
+    name: ['', [Validators.required]],
+    lastname: ['', [Validators.required]],
     birthday: ['', [Validators.required,fechaNacimientoValidator()]],
     dni: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
     phone: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
@@ -100,8 +99,16 @@ export class ProfilePage implements OnInit {
 
   profileImage: string = '';
 
-  get isFullNameRequired(): boolean {
-    const control: AbstractControl | null = this.profileForm.get('fullname');
+  get isNameRequired(): boolean {
+    const control: AbstractControl | null = this.profileForm.get('name');
+    if (control) {
+      return control.hasError('required') && control.touched;
+    }
+    return false;
+  }
+
+  get isLastNameRequired(): boolean {
+    const control: AbstractControl | null = this.profileForm.get('lastname');
     if (control) {
       return control.hasError('required') && control.touched;
     }
@@ -162,15 +169,10 @@ export class ProfilePage implements OnInit {
 
   saveChanges(): void {
     try {
-      const { fullname, birthday, dni, phone } = this.profileForm.value;
-      const [name, lastname] = fullname.split(' ');
-      const user: any = {
+
+      const user: ProfileDto = {
         ...this.userData,
-        name,
-        lastname,
-        birthday,
-        dni,
-        phone,
+        ...this.profileForm.value,
         imageProfile: this.profileImage,
       };
       const model: CloudinaryDto={
