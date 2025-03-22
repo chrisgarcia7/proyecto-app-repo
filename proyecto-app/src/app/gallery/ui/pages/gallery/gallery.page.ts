@@ -33,7 +33,6 @@ export class GalleryPage implements OnInit {
         console.log('Gallery Data:', galleryData); 
         if (galleryData.length > 0) {
             this.userImages = galleryData.map(image => image.photo);
-            console.log('User Images:', this.userImages); 
         } else {
             console.log('No images found.'); 
         }
@@ -43,18 +42,15 @@ export class GalleryPage implements OnInit {
   }
 
   onFabClick() {
-    // Lógica para el clic del botón principal
-    console.log('Floating action button clicked!');
+
   }
 
   actionOne() {
-    // Lógica para la acción uno
-    console.log('Action one clicked!');
+
   }
 
   actionTwo() {
-    // Lógica para la acción dos
-    console.log('Action two clicked!');
+
   }
 
 

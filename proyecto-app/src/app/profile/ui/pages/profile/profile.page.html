@@ -79,6 +79,9 @@
     @if (isBirthdayRequired) {
     <ion-note class="form__errorMessage">El campo es requerido</ion-note>
     }
+    @if (isBirthdayValid) {
+      <ion-note class="form__errorMessage">Fecha de Nacimiento invalida</ion-note>
+      }
 
     <ion-item>
       <div style="display: flex; align-items: center; width: 100%">

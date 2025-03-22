@@ -17,6 +17,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getMessaging, provideMessaging } from '@angular/fire/messaging';
 import { environment } from './environments/environment.prod';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -29,5 +30,6 @@ bootstrapApplication(AppComponent, {
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideMessaging(() => getMessaging()),
+    provideHttpClient(withFetch()),
   ],
 });

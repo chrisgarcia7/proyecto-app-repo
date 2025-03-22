@@ -28,6 +28,10 @@ import { Router } from '@angular/router';
 import { IconService } from 'src/app/shared/services/icons/icon.service';
 import { ProfileService } from 'src/app/shared/services/infoprofile/profile.service';
 import { ProfileDto } from 'src/app/auth/modelos/profile';
+import { fechaNacimientoValidator } from 'src/app/profile/validators/customs.validators';
+import { CloudinaryService } from 'src/app/shared/services/cloudinary/cloudinary.service';
+import { CloudinaryDto } from 'src/app/shared/models/cloudinary_model';
+import { CloudinaryResponseDto } from 'src/app/shared/models/cloudinary_response';
 
 @Component({
   selector: 'app-profile',
@@ -58,6 +62,7 @@ export class ProfilePage implements OnInit {
   private readonly _toastController: ToastController = inject(ToastController);
   private readonly _iconservice: IconService = inject(IconService);
   private readonly _profileservice: ProfileService = inject(ProfileService);
+  private readonly _cloudinaryService: CloudinaryService = inject(CloudinaryService);
 
   userName: string = '';
   userLastName: string = '';
@@ -65,6 +70,7 @@ export class ProfilePage implements OnInit {
   userBirthday: Date = new Date(0);
   userDNI: number = 0;
   userFullName: string = '';
+  userData: ProfileDto | null = null;
 
   ngOnInit(): void {
     this.loadUserProfile();
@@ -73,6 +79,7 @@ export class ProfilePage implements OnInit {
   async loadUserProfile() {
     const userProfile: ProfileDto | null =
       await this._profileservice.getUserProfile();
+    this.userData= userProfile
     if (userProfile) {
       this.userName = userProfile.name;
       this.userLastName = userProfile.lastname;
@@ -80,13 +87,13 @@ export class ProfilePage implements OnInit {
       this.userBirthday = userProfile.birthday;
       this.userDNI = userProfile.dni;
       this.userFullName = this.userName + ' ' + this.userLastName;
+      this.profileImage = userProfile.imageProfile;
     }
   }
 
   profileForm: FormGroup = this.formBuilder.group({
     fullname: ['', [Validators.required]],
-    lastname: ['', [Validators.required]],
-    birthday: ['', [Validators.required]],
+    birthday: ['', [Validators.required,fechaNacimientoValidator()]],
     dni: ['', [Validators.required, Validators.pattern(/^\d{13}$/)]],
     phone: ['', [Validators.required, Validators.pattern(/^\d{8}$/)]],
   });
@@ -105,6 +112,14 @@ export class ProfilePage implements OnInit {
     const control: AbstractControl | null = this.profileForm.get('birthday');
     if (control) {
       return control.hasError('required') && control.touched;
+    }
+    return false;
+  }
+
+  get isBirthdayValid(): boolean {
+    const control: AbstractControl | null = this.profileForm.get('birthday');
+    if (control) {
+      return control.hasError('fechaInvalida') && control.touched;
     }
     return false;
   }
@@ -146,9 +161,44 @@ export class ProfilePage implements OnInit {
   }
 
   saveChanges(): void {
-    if (this.isFormInvalid) {
-      this.showToast('Ha ocurrido un error, vuelve a intentarlo', true);
-      return;
+    try {
+      const { fullname, birthday, dni, phone } = this.profileForm.value;
+      const [name, lastname] = fullname.split(' ');
+      const user: any = {
+        ...this.userData,
+        name,
+        lastname,
+        birthday,
+        dni,
+        phone,
+        imageProfile: this.profileImage,
+      };
+      const model: CloudinaryDto={
+        folder: "users-profile",
+        fileName : user.uid,
+        file: this.profileImage,
+
+      };
+      this._cloudinaryService.upload(model).subscribe({
+        next: (response : CloudinaryResponseDto)=>{
+          user.imageProfile= response.secure_url;
+          this._authService.updateUser(user).then(async ()=>{
+            await this.showToast('Foto de perfil actualizada correctamente');
+
+          }).catch( async() =>{
+            await this.showToast('Ha ocurrido un error, vuelva a intentar subir su foto', true);
+
+          });
+        },
+        error: async ()=>{
+          await this.showToast('Ha ocurrido un error, vuelva a intentar subir su foto', true);
+        }
+      });
+      
+      this.showToast('Se guardaron los cambios');
+    } catch (error) {
+      this.showToast('Ha ocurrido un error, vuelva a intentarlo', true);
+      console.error('este es el error:', error);
     }
   }
 
@@ -179,7 +229,7 @@ export class ProfilePage implements OnInit {
 
       allowEditing: false,
 
-      resultType: CameraResultType.Uri,
+      resultType: CameraResultType.Base64,
 
       saveToGallery: true,
 
@@ -192,6 +242,6 @@ export class ProfilePage implements OnInit {
 
     if (!camera) return;
 
-    this.profileImage = camera.webPath ?? camera.path ?? '';
+    this.profileImage = camera.webPath ?? camera.path ?? `data:image/jpeg;base64,${camera.base64String ?? ''}`;
   }
 }

@@ -106,11 +106,9 @@ export class LoginPage {
       .then((user) => {
         this.showToast("Bienvenido(a), haz iniciado sesión", false);
         this._router.navigate(['/tabs/home'])
-        console.log(user);
     })
     .catch((error)=>{
       this.showToast("Ha ocurrido un error, vuelva a intentarlo", true)
-      console.error(error);
     });
   }
 

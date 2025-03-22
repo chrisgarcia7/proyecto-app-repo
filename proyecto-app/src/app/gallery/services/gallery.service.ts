@@ -34,8 +34,6 @@ export class GalleryService {
 
     getDocRef.forEach((doc) => {
       const data = doc.data() as GalleryDto; 
-      console.log('Document Data:', data);
-      console.log('Image URL:', data.photo);
       if (data.photo) {
         images.push(data); 
       }

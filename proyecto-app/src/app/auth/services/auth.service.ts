@@ -22,6 +22,7 @@ import {
   where,
   getDocs,
   orderBy,
+  updateDoc,
 } from '@angular/fire/firestore';
 import { UserDto } from '../modelos/register';
 import { ProfileDto } from '../modelos/profile';
@@ -42,7 +43,6 @@ export class AuthService {
   async isUserLoggued(): Promise<boolean> {
     return new Promise<boolean>((resolve) => {
       this._auth.onAuthStateChanged((user: User | null) => {
-        console.log('user ->', user);
         if (user) {
           resolve(true);
         } else {
@@ -55,7 +55,6 @@ export class AuthService {
   async getCurrentUser(): Promise<User | null> {
     return new Promise<User | null>((resolve) => {
       this._auth.onAuthStateChanged((user: User | null) => {
-        console.log('user ->', user);
         resolve(user);
       });
     });
@@ -63,7 +62,7 @@ export class AuthService {
 
   
 
-  private createUserInFirestore(model: UserDto): void {
+  private createUserInFirestore(model: ProfileDto): void {
     const docRef: DocumentReference = doc(this._collection, model.uid);
     setDoc(docRef, {
       uid: model.uid,
@@ -73,6 +72,7 @@ export class AuthService {
       birthday: model.birthday,
       dni: model.dni,
       phone: model.phone,
+      imageProfile: model.imageProfile
     });
   }
 
@@ -91,7 +91,7 @@ export class AuthService {
     await signOut(this._auth);
   }
 
-  async signUp(model: UserDto): Promise<void> {
+  async signUp(model: ProfileDto): Promise<void> {
     const isLogged: boolean = await this.isUserLoggued();
     if (isLogged) return Promise.reject('Ya hay una sesión activa');
 
@@ -108,10 +108,17 @@ export class AuthService {
   async resetPassword(email: string): Promise<void> {
     try {
       await sendPasswordResetEmail(this._auth, email);
-      console.log('Correo de restablecimiento enviado');
+
     } catch (error) {
-      console.error('Error al enviar el correo de restablecimiento:', error);
+
       throw error;
     }
+  }
+
+  async updateUser(user: ProfileDto): Promise<void> {
+    const docRef: DocumentReference = doc(this._collection, user.uid);
+    updateDoc(docRef, {
+      ...user,
+    });
   }
 }
