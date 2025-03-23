@@ -9,7 +9,7 @@ import {
   User,
   sendPasswordResetEmail,
 } from '@angular/fire/auth';
-import { LoginDto } from '../modelos/usuario';
+import { LoginDto } from '../modelos/login';
 import {
   CollectionReference,
   DocumentReference,
@@ -72,7 +72,8 @@ export class AuthService {
       birthday: model.birthday,
       dni: model.dni,
       phone: model.phone,
-      imageProfile: model.imageProfile
+      imageProfile: model.imageProfile,
+      fcmDevice: '',
     });
   }
 

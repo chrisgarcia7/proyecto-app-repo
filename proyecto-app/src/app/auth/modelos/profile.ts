@@ -8,4 +8,5 @@ export interface ProfileDto{
     dni: number,
     phone: number,
     imageProfile: string,
+    fcmDevice: string,
 }

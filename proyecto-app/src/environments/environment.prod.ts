@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  api_url: 'https://rickandmortyapi.com/api/character',
   cloudinary_cloud_name: 'dfsjd37jb',
   cloudinary_api:'https://api.cloudinary.com/v1_1/dfsjd37jb',
   cloudinary_upload_preset: 'd-movil2',

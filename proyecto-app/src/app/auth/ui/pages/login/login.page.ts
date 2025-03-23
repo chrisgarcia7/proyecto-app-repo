@@ -26,7 +26,7 @@ import {
 import { Router, RouterLink } from '@angular/router';
 import { IconService } from 'src/app/shared/services/icons/icon.service';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { LoginDto } from 'src/app/auth/modelos/usuario';
+import { LoginDto } from 'src/app/auth/modelos/login';
 import { user } from '@angular/fire/auth';
 
 @Component({
@@ -42,7 +42,6 @@ import { user } from '@angular/fire/auth';
     CommonModule,
     FormsModule,
     IonButton,
-    IonButtons,
     IonIcon,
     IonItem,
     IonLabel,

@@ -10,7 +10,7 @@ import { IconService } from 'src/app/shared/services/icons/icon.service';
   templateUrl: './gallery.page.html',
   styleUrls: ['./gallery.page.scss'],
   standalone: true,
-  imports: [IonImg, IonIcon, IonFabList, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, IonFab, IonFabButton]
+  imports: [ IonIcon, IonFabList, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, IonFab, IonFabButton]
 })
 export class GalleryPage implements OnInit {
   private readonly _authService: AuthService = inject(AuthService)

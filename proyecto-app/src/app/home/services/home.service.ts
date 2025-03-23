@@ -1,8 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { User } from '@angular/fire/auth';
 import { collection, CollectionReference, Firestore, getDocs, query, where } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { ProfileDto } from 'src/app/auth/modelos/profile';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { CharacterDto } from '../models/character';
+import { environment } from 'src/environments/environment.prod';
+import { options } from 'ionicons/icons';
+import { ApiResponse } from '../models/apiresponse';
 
 const collectionName: string = 'users';
 
@@ -12,6 +18,7 @@ const collectionName: string = 'users';
 })
 export class HomeService {
   private readonly _authService: AuthService = inject(AuthService);
+  private readonly _http: HttpClient = inject(HttpClient);
   private readonly _firestore: Firestore = inject(Firestore);
   private readonly _collection: CollectionReference = collection(
     this._firestore,
@@ -28,5 +35,9 @@ export class HomeService {
     if (userSnapshot.empty) return null;
 
     return userSnapshot.docs[0].data() as ProfileDto;
+  }
+
+  getInfo(): Observable<ApiResponse>{
+    return this._http.get<ApiResponse>(`${environment.api_url}`);
   }
 }

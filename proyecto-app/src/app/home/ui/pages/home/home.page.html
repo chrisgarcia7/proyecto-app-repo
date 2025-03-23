@@ -1,21 +1,46 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Bienvenido(a), {{ userName }} {{ userLastname }}
-    </ion-title>
+    <ion-title> Bienvenido(a), {{ userName }} {{ userLastname }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Bienvenido(a), {{ userName }} {{ userLastname }}</ion-title>
+      <ion-title size="large"
+        >Bienvenido(a), {{ userName }} {{ userLastname }}</ion-title
+      >
     </ion-toolbar>
   </ion-header>
 
   <div id="container">
-    <ion-button (click)="signOut()">Cerrar sesión</ion-button>
-    <ion-button routerLink="/register" routerDirection="root">Registro</ion-button>
-    <ion-button routerLink="/login" routerDirection="root">Login</ion-button>
+    <div *ngFor="let character of charactersinfo">
+      <ion-card
+        style="
+          display: flex;
+          border-radius: 12px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          overflow: hidden;
+        "
+      >
+      <ion-card-content style="display: flex; align-items: center;">
+        
+          <ion-avatar style="margin-right: 16px;">
+            <img
+            [src]="character.image"
+            style=" border-radius: 10px"/>
+
+          </ion-avatar>
+          
+       
+          <div style="flex: 1;"> <!-- Ocupa el espacio restante -->
+            <ion-label style="font-weight: bold; display: block; margin-bottom: 4px;">{{ character.name }}</ion-label>
+            <ion-label style="display: block; margin-bottom: 2px;">{{ character.species }}</ion-label>
+            <ion-label style="display: block;">{{ character.status }}</ion-label>
+          </div>
+      </ion-card-content>
+        
+      </ion-card>
+    </div>
   </div>
 </ion-content>
