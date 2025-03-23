@@ -36,7 +36,6 @@ import { CommonModule } from '@angular/common';
     IonContent,
     IonCard,
     CommonModule,
-    IonItem,
     IonLabel,
     IonCardContent,
     IonAvatar,
@@ -85,8 +84,6 @@ export class HomePage implements OnInit {
 
     this._homeService.getInfo().subscribe((character) => {
       this.charactersinfo = character.results;
-      console.log('personajes:', character);
-      console.log('personajes en mi variable', this.charactersinfo);
     });
   }
 
